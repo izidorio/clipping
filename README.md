@@ -11,14 +11,14 @@ depois de incluir o Token já é possível incluir as notícias e utilizar o enc
 
 ![](./assets/clipping-token.gif)
 
-### Copie o clipping para área de transferência e cole no sei WhastsApp
+### Copie o clipping para área de transferência e cole no seu WhatsApp
 ![](./assets/clipping-copy.gif)
 
-### Clone ne o projeto 
+### Clone o projeto 
 ```
 git clone git@github.com:izidorio/clipping.git
 ```
-### No diretório do projeto instale as dependências
+### No diretório raiz do projeto instale as dependências
 ```
 cd clipping
 npm install
