@@ -16,10 +16,14 @@
                 <div class="form-group col-12">
                     <label>Cabeçalho</label>
                     <div class="input-group mb-2">
-                        <b-form-input
-                                type="text"
+                        <b-form-textarea
+                                id="text"
                                 v-model="form.cabecalho"
-                                required />
+                                rows="3"
+                                max-rows="6"
+                                required
+                        >
+                        </b-form-textarea>
                     </div>
                 </div>
 

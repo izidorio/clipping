@@ -20,7 +20,7 @@
 
         <form-news ref="form" :form="form" />
         <form-preferences ref="formPreferences"/>
-        <div class="wrapper">
+        <div class="wrapper pt-2">
             <div class="px-2 content-news" v-for="item in news" :key="item.id">
                 <news-card :news="item" @edit="onEdit" @delete="onDelete" />
             </div>
@@ -141,7 +141,6 @@ export default {
     }
     .actions i:hover{
         background: rgba(255, 255, 255, 0.3);
-
     }
 
     .close{
