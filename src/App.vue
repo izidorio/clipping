@@ -20,9 +20,10 @@
 
         <form-news ref="form" :form="form" />
         <form-preferences ref="formPreferences"/>
-
-        <div class="px-2 content-news" v-for="(item, index) in news" :key="index">
-            <news-card :news="item" @edit="onEdit" @delete="onDelete" />
+        <div class="wrapper">
+            <div class="px-2 content-news" v-for="item in news" :key="item.id">
+                <news-card :news="item" @edit="onEdit" @delete="onDelete" />
+            </div>
         </div>
 
   </div>
@@ -119,7 +120,7 @@ export default {
         font-size: 1.5rem;
     }
 
-    .content-news{
+    .wrapper{
         height: calc(100vh - 68px);
         border-left: 1px #ebebeb solid;
         border-right: 1px #ebebeb solid;
