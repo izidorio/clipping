@@ -1,19 +1,26 @@
 # Clipping
 Este projeto utiliza as principais tecnologias:
 
-[ ![](./assets/vue.png) ](https://vuejs.org/) [ ![](./assets/electron.png) ](https://www.electronjs.org/)  [ ![](./assets/bitly.png)](https://bitly.com/)
+[ ![](./assets/node.png) ](https://nodejs.org/) [ ![](./assets/vue.png) ](https://vuejs.org/) [ ![](./assets/electron.png) ](https://www.electronjs.org/)  [ ![](./assets/bitly.png)](https://bitly.com/)
 
-### Crie um token no [bitly](https://bitly.com/) para utilizar a api e gerar o short link
+### Crie uma conta no [bitly](https://bitly.com/) e gere um Token para utilizar a api para criar os short links
 ![](./assets/bitly-token.gif)
 
-### Cole o Token em **menu/preferências** e altere os outros valores se desejar
-![](./assets/clipping-preferences.gif)
+### Cole o Token em **menu/preferências**. Você também poderá alterar os outros valores se desejar
+depois de incluir o Token já é possível incluir as notícias e utilizar o encurtador de URL da Bitly
 
-### Copie o clipping para área de transferêcia e cole no sei WhastApp
+![](./assets/clipping-token.gif)
+
+### Copie o clipping para área de transferência e cole no sei WhastsApp
 ![](./assets/clipping-copy.gif)
 
-## Project setup
+### Clone ne o projeto 
 ```
+git clone git@github.com:izidorio/clipping.git
+```
+### No diretório do projeto instale as dependências
+```
+cd clipping
 npm install
 ```
 
@@ -22,10 +29,18 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compila e minimiza para produção em SPA
 ```
 npm run build
 ```
+Veja um exemplo de uma [SPA rodando](https://clipping.bentoweb.com.br/)
+
+### Compila o executável com Electorn
+```
+npm run electron:build
+```
+
+
 
 
 
