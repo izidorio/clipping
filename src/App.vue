@@ -66,7 +66,7 @@ export default {
             this.$refs.form.show()
         },
         onDelete(id){
-            Alert.warning('Confirma a remoção da notícia?', 'Remover')
+            Alert.warning('Confgiirma a remoção da notícia?', 'Remover')
                 .then( result => {
                     if(result.value){
                         this.$store.dispatch('clipping/destroyNews', id)
