@@ -13,8 +13,8 @@
                 <p>{{news.description}}</p>
             </div>
             <div class="action">
-                <i class="fa fa-pencil" @click="onEdit()"></i>
-                <i class="fa fa-trash" @click="onDelete()"></i>
+                <i class="fa fa-pencil" @click="onEdit"></i>
+                <i class="fa fa-trash" @click="onDelete"></i>
             </div>
         </div>
     </article>

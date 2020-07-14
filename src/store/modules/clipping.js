@@ -34,8 +34,10 @@ export default {
 
         },
         destroyNews (context, id) {
-            const data = context.state.news.filter( item => { item.id !== id})
-            context.commit('ADD_NEWS', data)
+            const newsFiltered = context.state.news.filter( item => {
+                return  item.id !== id
+            })
+            context.commit('ADD_NEWS', newsFiltered)
         }
     }
 }
