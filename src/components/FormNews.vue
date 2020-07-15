@@ -165,7 +165,7 @@
                     .then( result => {
 
                         //hack para resolver html minificados
-                        const html = result.data.replace(/">|"\/>/g,'">\n');
+                        const html = result.data.replace(/">|"\/>|" \/>/g,'">\n');
 
                         const rgxTitle = /"og:title" content="(.*)"/;
                         const rgxDesc = /"og:description" content="(.*)"/;
