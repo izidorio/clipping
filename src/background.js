@@ -1,10 +1,8 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, globalShortcut } from 'electron'
+import { app, protocol, BrowserWindow, globalShortcut, nativeImage } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
-import path from  'path'
-
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -18,11 +16,16 @@ protocol.registerSchemesAsPrivileged([
 ])
 
 function createWindow() {
+  const icon = nativeImage.createFromPath(`${app.getAppPath()}/build/icon.png`)
+  if (app.dock) {
+    app.dock.setIcon(icon)
+  }
   // Create the browser window.
   win = new BrowserWindow({
+    icon,
     width: 600,
     height: 812,
-    // icon: path.join(__dirname,'assets/icons/png/64x64.png'),
+    frame: false,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
