@@ -17,7 +17,7 @@
                     <b-form-input
                             type="url"
                             v-model="form.urlShort"
-                            required />
+                             />
                     <div class="input-group-append" v-b-tooltip.hover title="Gerar URL curta">
                         <div class="input-group-text" :class="[(form.url && bitlyToken) ? 'scrap-btn' : '']" @click="onUrlShort">
 

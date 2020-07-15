@@ -10,6 +10,10 @@
                     <b-dropdown-item @click="$refs.formPreferences.onShow()">
                         <i class="fa fa-gears mr-1"></i> Preferências
                     </b-dropdown-item>
+                    <b-dropdown-divider></b-dropdown-divider>
+                    <b-dropdown-item @click="onExternalLink('https://github.com/izidorio/clipping')">
+                        <i class="fa fa-github mr-1"></i> About
+                    </b-dropdown-item>
                 </b-dropdown>
             </div>
             <div class="actions">
@@ -39,6 +43,12 @@ import FormNews from './components/FormNews'
 import NewsCard from "./components/NewsCard";
 import session from "./utils/session";
 
+const aTags = document.getElementsByTagName("a");
+for (var i = 0; i < aTags.length; i++) {
+     aTags[i].setAttribute("onclick","require('shell').openExternal('" + aTags[i].href + "')");
+     aTags[i].href = "#";
+}
+
 export default {
     name: 'App',
     components: {
@@ -57,6 +67,9 @@ export default {
         ])
     },
     methods: {
+        onExternalLink(url){
+            require("electron").shell.openExternal(url);
+        },
         onForm () {
             this.form = {},
             this.$refs.form.show()
@@ -78,7 +91,8 @@ export default {
                 const preferences = session.getObject('preferences');
                 let str =  `${preferences.cabecalho}\n🗓️ *${moment(Date.now()).format('DD/MM/YYYY')}*\n\n`
                 this.news.forEach( item => {
-                    str += `${preferences.linkEmoji} ${item.urlShort}\n${preferences.resumeEmoji} ${item.description}\n\n`
+                    const link = item.urlShort ? item.urlShort : item.url
+                    str += `${preferences.linkEmoji} ${link}\n${preferences.resumeEmoji} ${item.description}\n\n`
                 })
 
                 await this.$copyText(str)
