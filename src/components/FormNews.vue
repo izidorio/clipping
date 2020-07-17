@@ -161,7 +161,7 @@
 
                 this.showScrap = true;
 
-                api.get(`https://cors-anywhere.herokuapp.com/${this.form.url}`)
+                api.get(`http://cors-anywhere.herokuapp.com/${this.form.url}`)
                     .then( result => {
 
                         //hack para resolver html minificados
