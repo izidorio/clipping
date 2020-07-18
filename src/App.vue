@@ -29,7 +29,6 @@
                 <news-card :news="item" @edit="onEdit" @delete="onDelete" />
             </div>
         </div>
-
   </div>
 </template>
 
@@ -42,12 +41,6 @@ import FormPreferences from "./components/FormPreferences";
 import FormNews from './components/FormNews'
 import NewsCard from "./components/NewsCard";
 import session from "./utils/session";
-
-const aTags = document.getElementsByTagName("a");
-for (var i = 0; i < aTags.length; i++) {
-     aTags[i].setAttribute("onclick","require('shell').openExternal('" + aTags[i].href + "')");
-     aTags[i].href = "#";
-}
 
 export default {
     name: 'App',
@@ -99,12 +92,14 @@ export default {
                 this.$bvToast.toast('Copiado para área de transferência', {
                     title: 'Sucesso',
                     variant: 'success',
+                    toaster: 'b-toaster-bottom-right',
                     autoHideDelay: 5000
                 })
             } else {
-                this.$bvToast.toast('Não há nenhuma notícia salva', {
-                    title: 'Info',
+                this.$bvToast.toast('Não há nenhuma notícia salva.', {
+                    title: 'Mensagem',
                     variant: 'primary',
+                    toaster: 'b-toaster-bottom-right',
                     autoHideDelay: 5000
                 })
             }
@@ -138,6 +133,7 @@ export default {
         height: calc(100vh - 68px);
         border-left: 1px #ebebeb solid;
         border-right: 1px #ebebeb solid;
+        overflow: auto;
     }
 
     .hamburger{

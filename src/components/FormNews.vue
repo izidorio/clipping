@@ -12,13 +12,13 @@
                         required />
             </div>
             <div class="form-group col-12">
-                <label>Short Url</label>
+                <label>Url encurtada</label>
                 <div class="input-group mb-2">
                     <b-form-input
                             type="url"
                             v-model="form.urlShort"
                              />
-                    <div class="input-group-append" v-b-tooltip.hover title="Gerar URL curta">
+                    <div class="input-group-append" v-b-tooltip.hover title="Encurtar a URL">
                         <div class="input-group-text" :class="[(form.url && bitlyToken) ? 'scrap-btn' : '']" @click="onUrlShort">
 
                             <b-overlay
@@ -46,7 +46,7 @@
                             max-rows="6"
                             required
                     ></b-form-textarea>
-                    <div class="input-group-append" v-b-tooltip.hover title="Scrap do Título e Descrição do link">
+                    <div class="input-group-append" v-b-tooltip.hover title="Scrape do Título e Descrição do link">
                         <div class="input-group-text" :class="[(form.url && bitlyToken) ? 'scrap-btn' : '']" @click="onScrape">
 
                             <b-overlay
@@ -109,6 +109,7 @@
                 showLink: false,
                 showScrap: false,
                 bitlyToken: '',
+                preferences: '',
                 errors: {}
             }
         },
@@ -117,16 +118,17 @@
         },
         methods:{
             show (){
-                const preferences = session.getObject('preferences')
-                if(! preferences){
-                    this.$bvToast.toast('Você precisa salvar as preferência', {
+                this.preferences = session.getObject('preferences')
+                if(! this.preferences){
+                    this.$bvToast.toast('Para começar a usar o clipping Você precisa salvar os parâmetros de configuração. Acesse o Menu/Preferência', {
                         title: 'Error',
                         variant: 'danger',
+                        toaster: 'b-toaster-bottom-right',
                         autoHideDelay: 5000
                     })
                     return
                 }
-                this.bitlyToken = preferences.bitlyToken || ''
+
                 this.$bvModal.show('bv-modal-clipping')
             },
             onSubmit (){
@@ -161,7 +163,7 @@
 
                 this.showScrap = true;
 
-                api.get(`http://cors-anywhere.herokuapp.com/${this.form.url}`)
+                api.get(  `${this.preferences.proxy}/${this.form.url}`)
                     .then( result => {
 
                         //hack para resolver html minificados
@@ -175,7 +177,7 @@
                         this.form.description = convertHTMLEntity(`${title[1]} ${desc[1]}`)
                     })
                     .catch( ()=> {
-                        this.$bvToast.toast('É possível que tenha atingido a quantidade de requisições por minuto. Aguarde ou insira o resumo manualmente', {
+                        this.$bvToast.toast('É possível que tenha atingido a quantidade de requisições por minuto. Aguarde ou insira o resumo manualmente. Acesse o github do desenvolvedor e saiba como criar um servidor Proxy CORS', {
                             title: 'Erro',
                             variant: 'warning',
                             autoHideDelay: 5000
@@ -191,22 +193,24 @@
                     this.$bvToast.toast('Você precisa informar uma url válida', {
                         title: 'Error',
                         variant: 'danger',
+                        toaster: 'b-toaster-bottom-right',
                         autoHideDelay: 5000
                     })
                     return
                 }
 
-                if(this.bitlyToken === undefined || this.bitlyToken === '' ){
-                    this.$bvToast.toast('Para gerar a url automaticamente você precisa informar o token do Bitly em preferências', {
+                if(this.preferences.bitlyToken === undefined || this.preferences.bitlyToken === '' ){
+                    this.$bvToast.toast('Para encurtar a url automaticamente você precisa informar o token do Bitly em: Menu/Preferências', {
                         title: 'Error',
                         variant: 'danger',
+                        toaster: 'b-toaster-bottom-right',
                         autoHideDelay: 5000
                     })
                     return
                 }
 
                 this.showLink = true;
-                const urlShort =  await short(this.form.url, this.bitlyToken);
+                const urlShort =  await short(this.form.url, this.preferences.bitlyToken);
                 this.form.urlShort = urlShort.link;
                 this.showLink = false
             }

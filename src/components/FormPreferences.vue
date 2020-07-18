@@ -47,9 +47,22 @@
                     </div>
                 </div>
 
+                <div class="form-group col-12">
+                    <label v-b-tooltip.hover
+                           title="Para fazer o scrape é preciso utilizar um Proxy para contornar O CORS (Cross-origin Resource Sharing). Por padrão utilizamos o https://cors-anywhere.herokuapp.com ">
+                        Proxy
+                        <i class="fa fa-info-circle" ></i>
+                    </label>
+                    <b-form-input
+                            type="url"
+                            v-model="form.proxy"
+                    />
+
+                </div>
+
             </div>
 
-            <b-button class="float-left" @click="$bvModal.hide('bv-modal-preferences')">Cancelar</b-button>
+
             <b-button type="submit" class="float-right px-5" >Salvar</b-button>
 
         </form>
@@ -81,7 +94,8 @@
                     bitlyToken: '',
                     cabecalho: `✂️ Clipping ✂️`,
                     linkEmoji: `🌐`,
-                    resumeEmoji: `💬`
+                    resumeEmoji: `💬`,
+                    proxy: 'https://cors-anywhere.herokuapp.com'
                 }
             }
         }

@@ -1,8 +1,8 @@
 {
   "name": "clipping",
   "title": "Clipping",
-  "version": "0.1.0",
-  "description": "App gerador de clipping de notícias com encurtador e scrap do título de descrição da url",
+  "version": "1.0.0",
+  "description": "App gerador de clipping de notícias com encurtador e scrape do título de descrição da url",
   "author": "Izidorio Bento <izidoriojr@gmail.com>",
   "license": "MIT",
   "private": true,
@@ -14,7 +14,7 @@
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "pack": "vue-cli-service electron-builder --dir",
+    "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
   "main": "background.js",
