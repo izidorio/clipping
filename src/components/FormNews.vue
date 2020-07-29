@@ -167,14 +167,25 @@
                     .then( result => {
 
                         //hack para resolver html minificados
-                        const html = result.data.replace(/">|"\/>|" \/>/g,'">\n');
+                        let html = result.data.replace(/'/g,'"');
+                        html = html.replace(/">|"\/>|" \/>/g,'">\n');
 
-                        const rgxTitle = /"og:title" content="(.*)"/;
-                        const rgxDesc = /"og:description" content="(.*)"/;
+                        let rgxTitle = /"og:title"(.*)content="(.*)"/;
+                        let rgxDesc = /"og:description"(.*)content="(.*)"/;
 
-                        const title =  rgxTitle.exec(html);
-                        const desc =  rgxDesc.exec(html);
-                        this.form.description = convertHTMLEntity(`${title[1]} ${desc[1]}`)
+                        let title =  rgxTitle.exec(html);
+                        let desc =  rgxDesc.exec(html);
+
+                        if(title && desc){
+                            this.form.description = convertHTMLEntity(`${title[2]} ${desc[2]}`)
+                        } else {
+                            rgxTitle = /content="(.*)" (.*)og:title/;
+                            rgxDesc = /content="(.*)" (.*)og:description/;
+                            title =  rgxTitle.exec(html);
+                            desc =  rgxDesc.exec(html);
+                            this.form.description = convertHTMLEntity(`${title[1]} ${desc[1]}`)
+                        }
+
                     })
                     .catch( ()=> {
                         this.$bvToast.toast('É possível que tenha atingido a quantidade de requisições por minuto. Aguarde ou insira o resumo manualmente. Acesse o github do desenvolvedor e saiba como criar um servidor Proxy CORS', {
