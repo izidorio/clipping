@@ -1,7 +1,7 @@
 {
   "name": "clipping",
   "title": "Clipping",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "App gerador de clipping de notícias com encurtador e scrape do título de descrição da url",
   "author": "Izidorio Bento <izidoriojr@gmail.com>",
   "license": "MIT",
