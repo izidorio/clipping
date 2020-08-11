@@ -40,7 +40,7 @@ npm run serve
 ```
 npm run build
 ```
-Veja um exemplo de uma [SPA rodando](https://clipping.bentoweb.com.br/)
+Veja um exemplo de uma [SPA rodando](https://clipping.vercel.app/)
 
 ### Compila o executável com Electorn
 ```
