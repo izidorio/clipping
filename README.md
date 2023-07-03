@@ -1,3 +1,13 @@
+# Este projeto foi descontinuado.
+
+Conheca a nova versão **[addon-clipping](https://github.com/izidorio/addon-clipping#readme)** que funciona como uma extensão do chrome.
+
+https://github.com/izidorio/addon-clipping#readme
+
+<center>
+<img src="https://github.com/izidorio/addon-clipping/blob/dev/commons/clipping.gif" width="400">
+</center>
+
 # Clipping
 Este projeto utiliza as principais tecnologias:
 
